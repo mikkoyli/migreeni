@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Migreeniloki</string>
+    <string name="buttonHenri">ButtonHenri</string>
+    <string name="buttonHeppu">ButtonHeppu</string>
+    <string name="buttonJussi">ButtonJussi</string>
+    <string name="buttonMikko">ButtonMikko</string>
+</resources>
