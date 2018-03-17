@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/painIcon"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        app:srcCompat="@drawable/pain3" />
+
+    <TextView
+        android:id="@+id/logDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/painIcon"
+        android:layout_toRightOf="@+id/painIcon"
+        android:text="Päivämäärä tähän" />
+
+    <TextView
+        android:id="@+id/logPain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/painIcon"
+        android:layout_toEndOf="@+id/painIcon"
+        android:layout_toRightOf="@+id/painIcon"
+        android:text="Tuskan taso tähän" />
+
+    <TextView
+        android:id="@+id/logType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/painIcon"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:text="Tyyppi tähän" />
+</RelativeLayout>
