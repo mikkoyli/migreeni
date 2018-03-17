@@ -1,5 +1,6 @@
 package harkat.jussi.loppuharkkaproto;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,8 +24,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mikko.setOnClickListener(this);
     }
 
-
-
     @Override
     public void onClick(View view) {
 
@@ -43,9 +42,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.ButtonJussi:
-                Toast.makeText(MainActivity.this, "Jee hyvä jussi anna palaa",
-                        Toast.LENGTH_LONG).show();
-                // tästä voisi alkaa jussin aktivity
+                Intent intent = new Intent(getApplicationContext(), MigreeniLoki.class);
+                startActivity(intent);
                 break;
 
             case R.id.ButtonMikko:
