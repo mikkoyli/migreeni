@@ -4,4 +4,11 @@
     <string name="buttonHeppu">ButtonHeppu</string>
     <string name="buttonJussi">ButtonJussi</string>
     <string name="buttonMikko">ButtonMikko</string>
+    <string name="title_activity_migreeni_loki">MigreeniLoki</string>
+
+    <string name="takaisin">Takaisin</string>
+    <string name="Uusi">Uusi Migreeni</string>
+    <string name="logDate">date</string>
+    <string name="logPain">pain</string>
+    <string name="logType">type</string>
 </resources>
