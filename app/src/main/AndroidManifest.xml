@@ -20,7 +20,7 @@
             android:name=".MigreeniLoki"
             android:label="@string/title_activity_migreeni_loki"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="harkat.jussi.loppuharkkaproto.MainActivity" />
