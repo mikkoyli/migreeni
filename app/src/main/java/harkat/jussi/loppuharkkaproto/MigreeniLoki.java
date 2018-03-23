@@ -65,14 +65,14 @@ public class MigreeniLoki extends AppCompatActivity implements View.OnClickListe
 
 
     private void populateMigraineList() {
-        /*migraineList.add(new Migreeni("17.3.2018", 25, 10,
+        migraineList.add(new Migreeni("17.3.2018", 25, 10,
                 "Aurallinen","liikunta, viini, suklaa","hammas, otsa",
                 "oksu, valoherkkyys", "helvetisti herskaa",
                 "baari", "stressi ja koksu", "Ei", R.drawable.pain10));
 
         migraineList.add(new Migreeni("17.2.2018", 25, 2, "Auraton",
                 "viini","pää","oksu",
-                "", "home", "koksu", "Ei", R.drawable.pain2));*/
+                "", "home", "koksu", "Ei", R.drawable.pain2));
     }
 
     private void populateListView() {
