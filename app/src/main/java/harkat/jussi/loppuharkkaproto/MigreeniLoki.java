@@ -39,7 +39,7 @@ public class MigreeniLoki extends AppCompatActivity implements View.OnClickListe
 
         Toast.makeText(MigreeniLoki.this, "Jee hyvä jussi anna palaa",
                 Toast.LENGTH_LONG).show();
-        
+
         populateMigraineList();
         populateListView();
         viewClickedMigraine();
