@@ -44,7 +44,8 @@ public class MigreeniLoki extends AppCompatActivity implements View.OnClickListe
         viewClickedMigraine();
 
         db = new DatabaseHandler(this);
-        //db.addMigraine(migraineList.get(0));
+        //db.addMigraine(migraineList.get(0)); migreenin tallennus
+        // db.getMigraines() // migreenien listaaminen
 
     }
 
