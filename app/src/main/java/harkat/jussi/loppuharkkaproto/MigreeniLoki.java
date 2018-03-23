@@ -25,6 +25,7 @@ import java.util.List;
 public class MigreeniLoki extends AppCompatActivity implements View.OnClickListener {
 
     private List<Migreeni> migraineList = new ArrayList<Migreeni>();
+    private DatabaseHandler db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +39,14 @@ public class MigreeniLoki extends AppCompatActivity implements View.OnClickListe
 
         Toast.makeText(MigreeniLoki.this, "Jee hyvä jussi anna palaa",
                 Toast.LENGTH_LONG).show();
-        
+
+        db = new DatabaseHandler(this);
+
         populateMigraineList();
         populateListView();
         viewClickedMigraine();
+
+        db.addMigraine(migraineList.get(0));
     }
 
     private void viewClickedMigraine() {

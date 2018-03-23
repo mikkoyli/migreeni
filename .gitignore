@@ -1,15 +1,15 @@
 *.iml
 .gradle
-/local.properties
+local.properties
 
 # User-specific stuff:
-/.idea/workspace.xml
-/.idea/workspace.xml
-/.idea/libraries
-/.idea/vcs.xml
-/.idea/modules.xml
+.idea/workspace.xml
+.idea/workspace.xml
+.idea/libraries
+.idea/vcs.xml
+.idea/modules.xml
 
 .DS_Store
-/build
-/captures
+build
+captures
 .externalNativeBuild
