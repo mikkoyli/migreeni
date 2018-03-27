@@ -4,4 +4,33 @@
     <string name="buttonHeppu">ButtonHeppu</string>
     <string name="buttonJussi">ButtonJussi</string>
     <string name="buttonMikko">ButtonMikko</string>
+    <string name="title_activity_migreeni_loki">MigreeniLoki</string>
+
+    <!-- migreeniloki -->
+    <string name="takaisin">Takaisin</string>
+    <string name="Uusi">Uusi Migreeni</string>
+    <string name="logDate">date</string>
+    <string name="logPain">pain</string>
+    <string name="logType">type</string>
+
+
+    <!-- migreeniwizard -->
+    <string name="log_new_date_button">päivämäärä</string>
+    <string name="log_new_time_start_button">alkuaika</string>
+    <string name="log_new_time_stop_button">loppuaika</string>
+    <string name="log_cancel_button">Hylkää</string>
+    <string name="log_next_button">Seuraava</string>
+    <string name="log_prev_button">Edellinen</string>
+    <string name="log_finish_button">Valmis</string>
+    <string name="log_new_pain_button">Kivun määrä</string>
+    <string name="choose_pain_button">Valitse</string>
+    <string name="aurallinen_box">Aurallinen</string>
+    <string name="auraton_box">Auraton</string>
+
+    <string name="migraine_fragment1">fragment1</string>
+    <string name="migraine_fragment2">fragment2</string>
+    <string name="migraine_fragment3">fragment3</string>
+    <string name="WizardManager">fragmentwizard</string>
+
+
 </resources>

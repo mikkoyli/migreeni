@@ -22,7 +22,7 @@ public class Migreeni {
         this.location=location;
         this.triggers=triggers;
         this.menstruation=menstruation;
-        this.iconID = painIntensity;
+        this.iconID = iconID;
     }
 
     private String date;

@@ -4,6 +4,7 @@ package harkat.jussi.loppuharkkaproto;
  * Created by Jussi on 17.3.2018.
  */
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -25,7 +26,7 @@ import java.util.List;
 public class MigreeniLoki extends AppCompatActivity implements View.OnClickListener {
 
     private List<Migreeni> migraineList = new ArrayList<Migreeni>();
-
+    private DatabaseHandler db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,12 +37,14 @@ public class MigreeniLoki extends AppCompatActivity implements View.OnClickListe
         Button newMig = (Button) findViewById(R.id.newMigraine);
         newMig.setOnClickListener(this);
 
-        Toast.makeText(MigreeniLoki.this, "Jee hyvä jussi anna palaa",
-                Toast.LENGTH_LONG).show();
-        
         populateMigraineList();
         populateListView();
         viewClickedMigraine();
+
+        db = new DatabaseHandler(this);
+        //db.addMigraine(migraineList.get(0)); //migreenin tallennus
+        // db.getMigraines(); // migreenien listaaminen
+
     }
 
     private void viewClickedMigraine() {
@@ -58,16 +61,15 @@ public class MigreeniLoki extends AppCompatActivity implements View.OnClickListe
         });
     }
 
-
     private void populateMigraineList() {
         migraineList.add(new Migreeni("17.3.2018", 25, 10,
-                "Aurallinen","liikunta, viini, suklaa","hammas, otsa",
+                "Aurallinen","näköharhat","hammas, otsa",
                 "oksu, valoherkkyys", "helvetisti herskaa",
-                "baari", "stressi ja koksu", "Ei", R.drawable.pain10));
+                "baari", "stressi ja punkku", "Ei", R.drawable.pain10));
 
         migraineList.add(new Migreeni("17.2.2018", 25, 2, "Auraton",
-                "viini","pää","oksu",
-                "", "home", "koksu", "Ei", R.drawable.pain2));
+                "valoherkkyys","pää","oksu",
+                "", "home", "koksu ja liikunta", "Ei", R.drawable.pain2));
     }
 
     private void populateListView() {
@@ -113,16 +115,15 @@ public class MigreeniLoki extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
 
         switch (view.getId()){
-
             case R.id.backToMain:
                 finish();
                 break;
 
             case R.id.newMigraine:
-                Toast.makeText(MigreeniLoki.this, "Tästä alkaa uuden migreenin luonti",
-                        Toast.LENGTH_LONG).show();
-                //Intent intent = new Intent(getApplicationContext(), MigreeniLoki.class);
-                //startActivity(intent);
+
+                //Intent intent = new Intent(getApplicationContext(), oldMigraineWizard.class);
+                Intent intent = new Intent(getApplicationContext(), WizardManager.class);
+                startActivity(intent);
                 break;
         }
     }
