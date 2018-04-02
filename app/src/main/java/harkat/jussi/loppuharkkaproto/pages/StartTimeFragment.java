@@ -49,6 +49,8 @@ public class StartTimeFragment extends Fragment {
         Bundle args = getArguments();
         mKey = args.getString(ARG_KEY);
         mPage = (StartTimePage) mCallbacks.onGetPage(mKey);
+
+
     }
 
     @Override
@@ -59,6 +61,8 @@ public class StartTimeFragment extends Fragment {
 
         tp = rootView.findViewById(R.id.timePicker);
         tp.setIs24HourView(true);
+        mPage.getData().putString(StartTimePage.STARTTIME_DATA_KEY,String.format("%02d:%02d", tp.getHour(),tp.getMinute()));
+        mPage.notifyDataChanged();
         return rootView;
     }
 

@@ -17,6 +17,9 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".c"
+            android:label="@string/app_name" />
+        <activity
             android:name=".MigreeniLoki"
             android:label="@string/title_activity_migreeni_loki"
             android:parentActivityName=".MainActivity"
@@ -31,6 +34,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MigreeniView"></activity>
     </application>
 
 </manifest>

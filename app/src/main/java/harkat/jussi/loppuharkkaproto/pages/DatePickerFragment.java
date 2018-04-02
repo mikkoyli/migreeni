@@ -48,6 +48,9 @@ public class DatePickerFragment extends Fragment {
         Bundle args = getArguments();
         mKey = args.getString(ARG_KEY);
         mPage = (DatePickerPage) mCallbacks.onGetPage(mKey);
+
+
+
     }
 
     @Override
@@ -57,6 +60,12 @@ public class DatePickerFragment extends Fragment {
         ((TextView) rootView.findViewById(android.R.id.title)).setText(mPage.getTitle());
 
         mDateView = rootView.findViewById(R.id.datePicker);
+        Calendar calendar = Calendar.getInstance();
+
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        mPage.getData().putString(DatePickerPage.DATE_DATA_KEY,String.format("%d.%d.%d",calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.MONTH)+1, calendar.get(Calendar.YEAR)));
+        mPage.notifyDataChanged();
+
 
         return rootView;
     }

@@ -45,6 +45,8 @@ public class EndTimeFragment extends Fragment {
         Bundle args = getArguments();
         mKey = args.getString(ARG_KEY);
         mPage = (EndTimePage) mCallbacks.onGetPage(mKey);
+
+
     }
 
     @Override
@@ -55,6 +57,8 @@ public class EndTimeFragment extends Fragment {
 
         tp = rootView.findViewById(R.id.timePicker);
         tp.setIs24HourView(true);
+        mPage.getData().putString(EndTimePage.ENDTIME_DATA_KEY,String.format("%02d:%02d", tp.getHour(),tp.getMinute()));
+        mPage.notifyDataChanged();
         return rootView;
     }
 

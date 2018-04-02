@@ -57,6 +57,10 @@ public class PainFragment extends Fragment {
         np = rootView.findViewById(R.id.painPicker);
         np.setMinValue(0);
         np.setMaxValue(10);
+
+        mPage.getData().putString(PainPage.PAIN_DATA_KEY, String.format("%d", np.getValue()));
+        mPage.notifyDataChanged();
+
         return rootView;
     }
 
