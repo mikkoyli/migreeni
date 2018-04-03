@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             final List<Migreeni> list = dbhandler.getMigraines();
             final List<String> _list = new ArrayList<>();
-            for (int i = 0; i < list.size(); i++) {
-                _list.add("migreenikohtaus\n" + list.get(i).getDate());//tähän lisäksi esim + list.get(i).getKellonAika() tms kakkaa
+            for (int i = 0;i<list.size() ; i++) {
+                _list.add("migreenikohtaus\n" + list.get(i).getDate() + " - " + list.get(i).getStartTime());
             }
 
             final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>

@@ -126,8 +126,6 @@ public class MigreeniLoki extends AppCompatActivity implements
                         dbhandler.addMigraine(migreeni);
                         dbhandler.close();
                     } catch (Exception e) {
-                        Log.e("juha", "tallennus failaa");
-
                     }
                     restartFirstActivity("Tiedot tallennettus");
                 } else {
@@ -136,7 +134,6 @@ public class MigreeniLoki extends AppCompatActivity implements
                         Page p = mWizardModel.getCurrentPageSequence().get(mPager.getCurrentItem());
                         tallennaMigreeni(p);
                     } catch (Exception e) {
-                        Log.e("juha", "retard error: " + e.toString());
                     }
 
                     if (mEditingAfterReview) {
@@ -222,42 +219,73 @@ public class MigreeniLoki extends AppCompatActivity implements
         }
     }
 
+    private String regguls(Bundle b){
+        String str = "";
+        Set<String> keys = b.keySet();
+        Iterator<String> it = keys.iterator();
+        try {
+            while (it.hasNext()) {
+                String _key = it.next();
+                str = b.get(_key).toString();
+                str = str.substring(1, str.length() - 1);
+            }
+        } catch (Exception e) {
+        }
+        return str;
+    }
     public void tallennaMigreeni(Page p) {
         Bundle bundle = p.getData();
         String key = p.getKey();
-
         switch (key) {
             case "Päivämäärä":
                 migreeni.setDate(bundle.getString(DatePickerPage.DATE_DATA_KEY));
-                Log.e("tietokanta date",bundle.getString(DatePickerPage.DATE_DATA_KEY));
                 break;
             case "Kohtauksen alku":
                 migreeni.setStartTime(bundle.getString(StartTimePage.STARTTIME_DATA_KEY));
-                Log.e("tietokanta start time",bundle.getString(StartTimePage.STARTTIME_DATA_KEY));
                 break;
             case "Kohtauksen loppu":
                 migreeni.setEndTime(bundle.getString(EndTimePage.ENDTIME_DATA_KEY));
-                Log.e("tietokanta end time",bundle.getString(EndTimePage.ENDTIME_DATA_KEY));
                 break;
             case "Kivun taso":
                 migreeni.setPainIntensity(bundle.getString(PainPage.PAIN_DATA_KEY));
-                Log.e("tietokanta kivun taso",bundle.getString(PainPage.PAIN_DATA_KEY));
                 break;
-            case "Tyyppi":
-                String str = "";
-                Set<String> keys = bundle.keySet();
-                Iterator<String> it = keys.iterator();
-                try{
-                while (it.hasNext()) {
-                    String _key = it.next();
-                    str = bundle.get(_key).toString();
-                    str = str.substring(1,str.length()-1);
-                }}catch(Exception e){}
-                migreeni.setType(str);
-                Log.e("tietokanta koht tyyppi",str+" ");
+            case "Kohtauksen tyyppi":
+                migreeni.setType(regguls(bundle));
+                break;
+            case "Kivun sijainti":
+                migreeni.setPainLocation(bundle.getString("_"));
+                break;
+            case "Kuvaile itse:Kuvaile kivun sijaintia":
+                migreeni.setPainLocation(bundle.getString("_"));
+                break;
+            case "Kivun tyyppi":
+                migreeni.setType2(regguls(bundle));
+                break;
+            case "Kyllä:Kuvaile muita oireita":
+                migreeni.setOtherSymptoms(bundle.getString("_"));
+                break;
+            case "Otettu:Lääkkeen nimi ja annostus":
+                migreeni.setMedicineTaken(bundle.getString("_"));
+                break;
+            case "Otettu:Lääkkeen vaikutus":
+                migreeni.setMedicineEffect(bundle.getString("_"));
+                break;
+            case "Sijainti kohtauksen alkaessa":
+                migreeni.setLocation(bundle.getString("_"));
+                break;
+            case "Ennakko-oireet":
+                migreeni.setPresymptoms(regguls(bundle));
+                break;
+            case "Kyllä:Kuvaile muita ennakko-oireita":
+                migreeni.setPresymptoms2(bundle.getString("_"));
+                break;
+            case "Laukaisevat tekijät":
+                migreeni.setTriggers(regguls(bundle));
+                break;
+            case "Kyllä:Kuvaile muita laukaisevia tekijöitä":
+                migreeni.setTriggers2(bundle.getString("_"));
                 break;
             default:
-                Log.e("tietokanta fatal error", key + " invalid");
                 break;
         }
     }

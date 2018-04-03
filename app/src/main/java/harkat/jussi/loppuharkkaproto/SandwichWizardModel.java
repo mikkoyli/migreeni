@@ -27,7 +27,7 @@ public class SandwichWizardModel extends AbstractWizardModel {
                 new StartTimePage(this, "Kohtauksen alku").setRequired(false),
                 new EndTimePage(this, "Kohtauksen loppu").setRequired(false),
                 new PainPage(this, "Kivun taso").setRequired(false),
-                new MultipleFixedChoicePage(this, "Tyyppi").setChoices(
+                new MultipleFixedChoicePage(this, "Kohtauksen tyyppi").setChoices(
                         "Aurallinen",
                         "Auraton"),
                 new BranchPage(this, "Kivun sijainti")
@@ -35,14 +35,14 @@ public class SandwichWizardModel extends AbstractWizardModel {
                         .addBranch("Oikea puoli")
                         .addBranch(
                                 "Kuvaile itse",
-                                new TextPage(this, "Kivun sijainti").setRequired(false)),
+                                new TextPage(this, "Kuvaile kivun sijaintia").setRequired(false)),
                 new MultipleFixedChoicePage(this, "Kivun tyyppi").setChoices(
                         "Viiltävä", "Sykkivä", "Pakottava"),
                 new BranchPage(this, "Onko muita oireita?")
                         .addBranch("Ei")
                         .addBranch(
                                 "Kyllä",
-                                new TextPage(this, "Kuvaile oireita").setRequired(false)),
+                                new TextPage(this, "Kuvaile muita oireita").setRequired(false)),
                 new BranchPage(this, "Lääkkeet")
                         .addBranch("Ei otettu")
                         .addBranch(
@@ -54,18 +54,18 @@ public class SandwichWizardModel extends AbstractWizardModel {
                 new TextPage(this, "Sijainti kohtauksen alkaessa").setRequired(false),
                 new MultipleFixedChoicePage(this, "Ennakko-oireet").setChoices(
                         "Näköharhat", "Valonherkkyys", "Ääniherkkyys", "Hajuherkkyys"),
-                new BranchPage(this, "Onko muita ennako-oireita?")
+                new BranchPage(this, "Onko muita ennakko-oireita?")
                         .addBranch("Ei")
                         .addBranch(
                                 "Kyllä",
-                                new TextPage(this, "Kuvaile ennakko-oireita").setRequired(false)),
+                                new TextPage(this, "Kuvaile muita ennakko-oireita").setRequired(false)),
                 new MultipleFixedChoicePage(this, "Laukaisevat tekijät").setChoices(
                         "Stressi", "Muutos unirytmissä", "Levottomuus", "Kuukautiskierto"),
-                new BranchPage(this, "Onko muita laukaisevia tekijäitä??")
+                new BranchPage(this, "Onko muita laukaisevia tekijöitä??")
                         .addBranch("Ei")
                         .addBranch(
                                 "Kyllä",
-                                new TextPage(this, "Kuvaile laukaisevia tekijöitä").setRequired(false))
+                                new TextPage(this, "Kuvaile muita laukaisevia tekijöitä").setRequired(false))
         );
     }
 }
