@@ -11,4 +11,17 @@
     <string name="logDate">date</string>
     <string name="logPain">pain</string>
     <string name="logType">type</string>
+
+    <string name="next">Seuraava</string>
+    <string name="prev">Edellinen</string>
+    <string name="finish">Tallenna</string>
+    <string name="review">Yhteenveto</string>
+
+    <string name="submit_confirm_message">Kiitos tiedoista!</string>
+    <string name="submit_confirm_button">Place order</string>
+
+    <string name="label_your_name">Name</string>
+    <string name="hint_your_name">e.g. Larry</string>
+    <string name="label_your_email">Email</string>
+    <string name="hint_your_email">Optional</string>
 </resources>

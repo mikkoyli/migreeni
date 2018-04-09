@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="harkat.jussi.loppuharkkaproto">
-
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -17,9 +18,12 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".c"
+            android:label="@string/app_name" />
+        <activity
             android:name=".MigreeniLoki"
             android:label="@string/title_activity_migreeni_loki"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".LogActivity"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -31,6 +35,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MigreeniView"></activity>
+        <activity android:name=".LogActivity"></activity>
     </application>
 
 </manifest>
