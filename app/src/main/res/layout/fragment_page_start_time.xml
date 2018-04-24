@@ -1,7 +1,10 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/WizardPageContainer"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:scaleY="1.00"
+    android:scaleX="1.00"
+    >
 
     <TextView style="@style/WizardPageTitle" />
 
@@ -17,9 +20,11 @@
                 android:id="@+id/timePicker"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:scaleY="2.00"
+                android:scaleX="2.00"
                 android:layout_marginBottom="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="36dp"
                 android:timePickerMode="spinner"/>
 
         </LinearLayout>

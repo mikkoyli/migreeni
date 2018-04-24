@@ -127,7 +127,7 @@ public class MigreeniLoki extends AppCompatActivity implements
                         dbhandler.close();
                     } catch (Exception e) {
                     }
-                    restartFirstActivity("Tiedot tallennettus");
+                    restartFirstActivity("Migreeni tallennettu");
                 } else {
 
                     try {
