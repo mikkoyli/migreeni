@@ -44,38 +44,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         final List<Migreeni> list = dbhandler.getMigraines();
         final List<String> _list = new ArrayList<>();
 
-        DataPoint[] dp =new DataPoint[list.size()];
-        for (int i = 0;i<list.size() ; i++) {
-            _list.add(list.get(i).getDate());
-            Log.d("JALAJALA", list.get(i).getDate());
+        if(list!=null && !list.isEmpty()) {
+            DataPoint[] dp =new DataPoint[list.size()];
+            for (int i = 0;i<list.size() ; i++) {
+                _list.add(list.get(i).getDate());
+                Log.d("JALAJALA", list.get(i).getDate());
 
-            String dateraw = list.get(i).getDate();
-            Date result = null;
-            DateFormat df = new SimpleDateFormat("dd.MM.YYYY");
-            try {
-                result =  df.parse(dateraw);
-            } catch (ParseException e) {
-                e.printStackTrace();
-                Log.e("JALAJALA","Error with date parsing");
+                String dateraw = list.get(i).getDate();
+                Date result = null;
+                DateFormat df = new SimpleDateFormat("dd.MM.YYYY");
+                try {
+                    result =  df.parse(dateraw);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                    Log.e("JALAJALA","Error with date parsing");
+                }
+
+                // todo: tässä pitäisi vissiin jotenki laittaa se migreeni datapointtiin? new SimpleDateFormat("yyyy-MM-dd").parse(newStringDate)
+                dp[i] = new DataPoint(result, i);
+                return dp;
             }
-
-            // todo: tässä pitäisi vissiin jotenki laittaa se migreeni datapointtiin? new SimpleDateFormat("yyyy-MM-dd").parse(newStringDate)
-            dp[i] = new DataPoint(result, i);
-
         }
-        return dp;
+        else { // this is very dirty fix to null pointer exeption when db is empty
+            DataPoint[] dp =new DataPoint[1];
+            Log.d("JALAJALA", "LIST IS EMPTY");
+            dp[0] = new DataPoint(0, 0);
+            return dp;
+        }
+    return null;
     }
 
     public void initializeLineGraphView() {
+
         graph = (GraphView) findViewById(R.id.graph);
-        // esimerkki: barchart
-        /*BarGraphSeries<DataPoint> series = new BarGraphSeries<>(new DataPoint[] {
-                new DataPoint(0, 1),
-                new DataPoint(1, 5),
-                new DataPoint(2, 3),
-                new DataPoint(3, 2),
-                new DataPoint(4, 6)
-        });*/
+
         series = new BarGraphSeries<DataPoint>(getData());
         graph.addSeries(series);
 
