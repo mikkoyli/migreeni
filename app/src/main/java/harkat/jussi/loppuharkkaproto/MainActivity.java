@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.ValueDependentColor;
 import com.jjoe64.graphview.series.BarGraphSeries;
@@ -23,8 +24,9 @@ import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    BarGraphSeries<DataPoint> series;
+    LineGraphSeries<DataPoint> series;
     GraphView graph;
+    SimpleDateFormat sdf = new SimpleDateFormat("dd.mm.yyyy");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,14 +44,46 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private DataPoint[] getData() {
         DatabaseHandler dbhandler = new DatabaseHandler(this);
         final List<Migreeni> list = dbhandler.getMigraines();
-        final List<String> _list = new ArrayList<>();
+        //final List<String> _list = new ArrayList<>();
+        DataPoint[] dp =new DataPoint[list.size()];
 
         if(list!=null && !list.isEmpty()) {
+            Log.d("JALAJALA", "LIST IS NOT EMPTY");
+            for (int i = 0; i < list.size(); i++) {
+
+                Date result = null;
+                DateFormat df = new SimpleDateFormat("dd.mm.yyyy");
+                try {
+                    result = df.parse(list.get(i).getDate());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                    Log.e("JALAJALA", "Error with date parsing");
+                }
+                long unixTime = 0;
+                int intensity = 0;
+                unixTime = result.getTime() / 1000;
+                intensity = Integer.parseInt(list.get(i).getPainIntensity());
+                Log.d("JALAJALA", "date: " + result + " intens: " + intensity);
+
+                // todo: tähän pitäisi i:n tilalle laittaa päivämäärä, parsinta ei vissiin toimi ihan oikein
+                dp[i] = new DataPoint(i, intensity);
+                Log.d("JALAJALA", "new dp: " + dp[i].toString());
+            }
+        }
+        else { // this is very dirty fix to null pointer exeption when db is empty
+            dp =new DataPoint[1];
+            Log.d("JALAJALA", "LIST IS EMPTY");
+            dp[0] = new DataPoint(0, 0);
+            return dp;
+        }
+        return dp;
+        /*
+            Log.d("JALAJALA", "LIST IS NOT EMPTY");
             DataPoint[] dp =new DataPoint[list.size()];
             for (int i = 0;i<list.size() ; i++) {
                 _list.add(list.get(i).getDate());
                 Log.d("JALAJALA", list.get(i).getDate());
-
+                Log.d("JALAJALA", list.get(i).getPainIntensity());
                 String dateraw = list.get(i).getDate();
                 Date result = null;
                 DateFormat df = new SimpleDateFormat("dd.MM.YYYY");
@@ -61,7 +95,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
 
                 // todo: tässä pitäisi vissiin jotenki laittaa se migreeni datapointtiin? new SimpleDateFormat("yyyy-MM-dd").parse(newStringDate)
-                dp[i] = new DataPoint(result, i);
+                dp[i] = new DataPoint(3+ i, 4+ i);
+                Log.d("JALAJALA", "new dp: " + dp[i].toString());
                 return dp;
             }
         }
@@ -70,28 +105,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Log.d("JALAJALA", "LIST IS EMPTY");
             dp[0] = new DataPoint(0, 0);
             return dp;
-        }
-    return null;
+        }*/
     }
 
     public void initializeLineGraphView() {
 
         graph = (GraphView) findViewById(R.id.graph);
 
-        series = new BarGraphSeries<DataPoint>(getData());
-        graph.addSeries(series);
-
-        // styling
-        series.setValueDependentColor(new ValueDependentColor<DataPoint>() {
-            @Override
-            public int get(DataPoint data) {
-                return Color.rgb((int) data.getX()*255/4, (int) Math.abs(data.getY()*255/6), 100);
-            }
+        /*LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
+                new DataPoint(0, 1),
+                new DataPoint(1, 5),
+                new DataPoint(2, 3),
+                new DataPoint(3, 2),
+                new DataPoint(4, 6)
         });
-        series.setSpacing(25);
-        series.setDrawValuesOnTop(true);
-        series.setValuesOnTopColor(Color.RED);
+*/
+        DataPoint[] DPs = getData();
+        Log.d("JALAJALA", "datapoints: " + DPs.length);
+        for (int i = 0; i < DPs.length; i++) {
+            Log.d("JALAJALA", DPs[i].toString());
+            Log.d("JALAJALA", "i: " + i);
+        }
 
+        series = new LineGraphSeries<DataPoint>(getData());
+        graph.addSeries(series);
+        /*graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter(){
+            @Override
+            public String formatLabel(double value, boolean isValueX) {
+                if (isValueX) {
+                    return sdf.format(new Date((long)value));
+                }else{
+                    return super.formatLabel(value, isValueX);
+                }
+
+            }
+        });*/
     }
 
 
