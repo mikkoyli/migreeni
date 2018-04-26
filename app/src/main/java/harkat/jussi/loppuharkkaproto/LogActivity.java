@@ -3,11 +3,13 @@ package harkat.jussi.loppuharkkaproto;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 //import com.tech.freak.wizardpager.ui.ReviewFragment;
 
@@ -21,8 +23,12 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log);
 
-        Button jussi = findViewById(R.id.ButtonLog);
-        jussi.setOnClickListener(this);
+        Button buttonLog = findViewById(R.id.ButtonLog);
+        buttonLog.setOnClickListener(this);
+
+        Button buttonGraph = findViewById(R.id.ButtonGraph);
+        buttonGraph.setOnClickListener(this);
+
         try {
             DatabaseHandler dbhandler = new DatabaseHandler(this);
             ListView listView = findViewById(R.id.migreeniLista);
@@ -59,8 +65,16 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
         switch (view.getId()) {
 
             case R.id.ButtonLog:
-                Intent intent = new Intent(getApplicationContext(), MigreeniLoki.class);
-                startActivity(intent);
+                Intent intentLog = new Intent(getApplicationContext(), MigreeniLoki.class);
+                startActivity(intentLog);
+                break;
+
+            case R.id.ButtonGraph:
+                /*
+                Intent intentGraph = new Intent(getApplicationContext(), MigreeniLoki.class);
+                startActivity(intentGraph);
+                */
+                Log.d("JALAJALA", "mikon graafin piirto");
                 break;
 
         }
