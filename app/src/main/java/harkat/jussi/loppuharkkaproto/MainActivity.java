@@ -44,91 +44,54 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private DataPoint[] getData() {
         DatabaseHandler dbhandler = new DatabaseHandler(this);
         final List<Migreeni> list = dbhandler.getMigraines();
-        //final List<String> _list = new ArrayList<>();
         DataPoint[] dp =new DataPoint[list.size()];
 
-        if(list!=null && !list.isEmpty()) {
-            Log.d("JALAJALA", "LIST IS NOT EMPTY");
-            for (int i = 0; i < list.size(); i++) {
+        Log.d("JALAJALA", "LIST IS NOT EMPTY");
+        for (int i = 0; i < list.size(); i++) {
 
-                Date result = null;
-                DateFormat df = new SimpleDateFormat("dd.mm.yyyy");
-                try {
-                    result = df.parse(list.get(i).getDate());
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                    Log.e("JALAJALA", "Error with date parsing");
-                }
-                long unixTime = 0;
-                int intensity = 0;
-                unixTime = result.getTime() / 1000;
-                intensity = Integer.parseInt(list.get(i).getPainIntensity());
-                Log.d("JALAJALA", "date: " + result + " intens: " + intensity);
-
-                // todo: tähän pitäisi i:n tilalle laittaa päivämäärä, parsinta ei vissiin toimi ihan oikein
-                dp[i] = new DataPoint(i, intensity);
-                Log.d("JALAJALA", "new dp: " + dp[i].toString());
+            Date result = null;
+            DateFormat df = new SimpleDateFormat("dd.mm.yyyy");
+            try {
+                result = df.parse(list.get(i).getDate());
+            } catch (ParseException e) {
+                e.printStackTrace();
+                Log.e("JALAJALA", "Error with date parsing");
             }
-        }
-        else { // this is very dirty fix to null pointer exeption when db is empty
-            dp =new DataPoint[1];
-            Log.d("JALAJALA", "LIST IS EMPTY");
-            dp[0] = new DataPoint(0, 0);
-            return dp;
-        }
+            long unixTime = 0;
+            int intensity = 0;
+            unixTime = result.getTime() / 1000;
+            intensity = Integer.parseInt(list.get(i).getPainIntensity());
+            Log.d("JALAJALA", "date: " + result + " intens: " + intensity);
+             // todo: tähän pitäisi i:n tilalle laittaa päivämäärä, parsinta ei vissiin toimi ihan oikein
+            dp[i] = new DataPoint(i, intensity);
+            Log.d("JALAJALA", "new dp: " + dp[i].toString());
+            }
+
         return dp;
-        /*
-            Log.d("JALAJALA", "LIST IS NOT EMPTY");
-            DataPoint[] dp =new DataPoint[list.size()];
-            for (int i = 0;i<list.size() ; i++) {
-                _list.add(list.get(i).getDate());
-                Log.d("JALAJALA", list.get(i).getDate());
-                Log.d("JALAJALA", list.get(i).getPainIntensity());
-                String dateraw = list.get(i).getDate();
-                Date result = null;
-                DateFormat df = new SimpleDateFormat("dd.MM.YYYY");
-                try {
-                    result =  df.parse(dateraw);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                    Log.e("JALAJALA","Error with date parsing");
-                }
-
-                // todo: tässä pitäisi vissiin jotenki laittaa se migreeni datapointtiin? new SimpleDateFormat("yyyy-MM-dd").parse(newStringDate)
-                dp[i] = new DataPoint(3+ i, 4+ i);
-                Log.d("JALAJALA", "new dp: " + dp[i].toString());
-                return dp;
-            }
-        }
-        else { // this is very dirty fix to null pointer exeption when db is empty
-            DataPoint[] dp =new DataPoint[1];
-            Log.d("JALAJALA", "LIST IS EMPTY");
-            dp[0] = new DataPoint(0, 0);
-            return dp;
-        }*/
     }
 
     public void initializeLineGraphView() {
-
+        DatabaseHandler dbhandler = new DatabaseHandler(this);
+        final List<Migreeni> list = dbhandler.getMigraines();
         graph = (GraphView) findViewById(R.id.graph);
 
-        /*LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
-                new DataPoint(0, 1),
-                new DataPoint(1, 5),
-                new DataPoint(2, 3),
-                new DataPoint(3, 2),
-                new DataPoint(4, 6)
-        });
-*/
-        DataPoint[] DPs = getData();
+        // debugging datapoints
+        /*DataPoint[] DPs = getData();
         Log.d("JALAJALA", "datapoints: " + DPs.length);
         for (int i = 0; i < DPs.length; i++) {
             Log.d("JALAJALA", DPs[i].toString());
             Log.d("JALAJALA", "i: " + i);
+        }*/
+        if (list != null) {
+            Log.d("JALAJALA", "NOT NULL");
+            series = new LineGraphSeries<DataPoint>(getData());
+            graph.addSeries(series);
+        } else {
+            Log.d("JALAJALA", "IS NULL");
+
         }
 
-        series = new LineGraphSeries<DataPoint>(getData());
-        graph.addSeries(series);
+        // tämän pitäisi renderödi x akselille päivämäärät sdf:n mukaan
         /*graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter(){
             @Override
             public String formatLabel(double value, boolean isValueX) {
