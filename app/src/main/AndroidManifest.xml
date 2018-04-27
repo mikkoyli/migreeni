@@ -39,7 +39,8 @@
         </activity>
         <activity android:name=".MigreeniView" />
         <activity android:name=".LogActivity" />
-        <activity android:name=".MigreeniGraph"></activity>
+        <activity android:name=".MigreeniGraph" />
+        <activity android:name=".GraphActivity"></activity>
     </application>
 
 </manifest>

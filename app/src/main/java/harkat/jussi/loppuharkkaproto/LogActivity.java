@@ -74,6 +74,10 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
                 Intent intentGraph = new Intent(getApplicationContext(), MigreeniLoki.class);
                 startActivity(intentGraph);
                 */
+
+                Intent intentGraph = new Intent(getApplicationContext(), GraphActivity.class);
+                startActivity(intentGraph);
+
                 Log.d("JALAJALA", "mikon graafin piirto");
                 break;
 
