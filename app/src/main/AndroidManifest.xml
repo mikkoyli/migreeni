@@ -34,12 +34,10 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".MigreeniView" />
         <activity android:name=".LogActivity" />
-        <activity android:name=".MigreeniGraph" />
         <activity android:name=".GraphActivity"></activity>
     </application>
 

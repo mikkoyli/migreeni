@@ -35,7 +35,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button logButton = (Button) findViewById(R.id.MigreeniLoki);
         logButton.setOnClickListener(this);
 
-
+        Button buttonGraph = findViewById(R.id.buttonGraph);
+        buttonGraph.setOnClickListener(this);
 
     }
 
@@ -47,6 +48,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.MigreeniLoki:
                 Intent intent = new Intent(getApplicationContext(), LogActivity.class);
                 startActivity(intent);
+                break;
+
+            case R.id.buttonGraph:
+
+                Intent intentGraph = new Intent(getApplicationContext(), GraphActivity.class);
+                startActivity(intentGraph);
                 break;
 
         }
