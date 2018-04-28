@@ -16,12 +16,13 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 public class GraphActivity extends AppCompatActivity implements View.OnClickListener {
 
-    LineGraphSeries<DataPoint> series;
+    BarGraphSeries<DataPoint> series;
     GraphView graph;
     SimpleDateFormat sdf = new SimpleDateFormat("dd.mm.yyyy");
 
@@ -53,9 +54,9 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
         }*/
         if (list != null) {
             //Log.d("JALAJALA", "NOT NULL");
-            //series = new LineGraphSeries<DataPoint>(getData());
+            series = new BarGraphSeries<DataPoint>(getData());
             Log.d("JALAJALA", "+"+list);
-            BarGraphSeries<DataPoint> series = new BarGraphSeries<>(new DataPoint[] {
+            /*BarGraphSeries<DataPoint> series = new BarGraphSeries<>(new DataPoint[] {
                     new DataPoint(1, 11),
                     new DataPoint(5, 6),
                     new DataPoint(10, 3),
@@ -64,8 +65,8 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
                     new DataPoint(20, 2),
                     new DataPoint(25, 6),
                     new DataPoint(31, 11),
-            });
-            series.setDataWidth(0.5);
+            });*/
+            series.setDataWidth(0.2);
             graph.addSeries(series);
         } else {
             Log.d("JALAJALA", "IS NULL");
@@ -102,13 +103,19 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
                 e.printStackTrace();
                 Log.e("JALAJALA", "Error with date parsing");
             }
-            long unixTime = 0;
+            //long unixTime = 0;
             int intensity = 0;
-            unixTime = result.getTime() / 1000;
+            //unixTime = result.getTime() / 1000;
+
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(result);
+
+            int day = cal.get(Calendar.DAY_OF_MONTH);
+
             intensity = Integer.parseInt(list.get(i).getPainIntensity());
-            Log.d("JALAJALA", "date: " + result + " intens: " + intensity);
+            Log.d("JALAJALA", "day: " + day + " intens: " + intensity);
             // todo: tähän pitäisi i:n tilalle laittaa päivämäärä, parsinta ei vissiin toimi ihan oikein
-            dp[i] = new DataPoint(i, intensity);
+            dp[i] = new DataPoint(day, intensity);
             Log.d("JALAJALA", "new dp: " + dp[i].toString());
         }
 
