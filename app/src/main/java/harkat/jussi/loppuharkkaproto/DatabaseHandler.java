@@ -146,6 +146,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             }
         }
 
+        db.close();
+
         return migraineList;
     }
     public static String callURL(String myURL) {
